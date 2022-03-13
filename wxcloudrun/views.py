@@ -51,7 +51,7 @@ def addData():
 
 @app.route('/api/getCodeData', methods=['GET'])
 def getCodeData():
-    HEAD=[request.headers]
+    HEAD=str(request.headers)
     id=request.args.get('id')
     dt=sqlInput('select * from wxCodeData where id ='+str(id))
     if len(dt)==0:
