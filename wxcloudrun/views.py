@@ -50,7 +50,7 @@ def addData():
     return make_succ_response('ok')
 
 @app.route('/api/getCodeData', methods=['GET'])
-def getMaxId():
+def getCodeData():
     id=request.args.get('id')
     dt=sqlInput('select * from wxCodeData where id ='+str(id))
     if len(dt)==0:
