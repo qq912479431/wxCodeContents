@@ -43,8 +43,8 @@ def getMaxId():
 @app.route('/api/add', methods=['POST'])
 def addData():
     try:
-        basedata=request.form['basedata']
+        basedata=request.get_json()['basedata']
     except:
-        return make_succ_response(str(request.form))
+        return make_succ_response(str(request.get_json()))
     sqlInput("INSERT INTO `wxCodeData` (`base64data`, `isuse`) VALUES ('"+basedata+"', 0)")
     return make_succ_response('ok')
