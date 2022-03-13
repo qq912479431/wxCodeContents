@@ -1,4 +1,6 @@
 from datetime import datetime
+from flask import Flask,request
+
 from flask import render_template, request
 from run import app
 from wxcloudrun.dao import delete_counterbyid, query_counterbyid, insert_counter, update_counterbyid
@@ -12,6 +14,7 @@ def sqlInput(sql):
 #2.利用db方法创建游标对象
     cur = db.cursor()
     cur.execute(sql)
+    db.commit()
     re=cur.fetchall()
     d=[]
     for i in re:
@@ -37,10 +40,11 @@ def getMaxId():
 
 
 
-@app.route('/api/count', methods=['GET'])
-def get_count():
+@app.route('/api/add', methods=['GET'])
+def addData():
+    basedata=request.form['basedata']
     """
     :return: 计数的值
-    """
-    counter = Counters.query.filter(Counters.id == 1).first()
-    return make_succ_response(0) if counter is None else make_succ_response(counter.count)
+    """INSERT INTO `wxCodeData` (`base64data`, `isuse`) VALUES ('DD', 0)
+    sqlInput("INSERT INTO `wxCodeData` (`base64data`, `isuse`) VALUES ('"+basedata+"', 0)")
+    return make_succ_response('ok')
