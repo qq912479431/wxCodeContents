@@ -43,8 +43,6 @@ def getMaxId():
 @app.route('/api/add', methods=['GET'])
 def addData():
     basedata=request.form['basedata']
-    """
-    :return: 计数的值
-    """INSERT INTO `wxCodeData` (`base64data`, `isuse`) VALUES ('DD', 0)
+
     sqlInput("INSERT INTO `wxCodeData` (`base64data`, `isuse`) VALUES ('"+basedata+"', 0)")
     return make_succ_response('ok')
