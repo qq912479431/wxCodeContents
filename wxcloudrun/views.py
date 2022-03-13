@@ -40,7 +40,7 @@ def getMaxId():
 
 
 
-@app.route('/api/add', methods=['GET'])
+@app.route('/api/add', methods=['POST'])
 def addData():
     basedata=request.form['basedata']
 
