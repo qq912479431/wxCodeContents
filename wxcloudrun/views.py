@@ -69,3 +69,13 @@ def getCodeData():
     else:
         dt[0]['login_openid']=openid
         return make_succ_response(dt[0])
+@app.route('/api/update', methods=['POST'])
+def updateContent():
+    id=request.get_json()['id']
+    content=request.get_json()['content']
+    open_id=request.get_json()['open_id']
+    try:
+        sqlInput('update wxCodeData set content="'+str(content)+'",open_id="'+str(open_id)+'" where id='+str(id))
+        return make_succ_response('ok')
+    except:
+        return make_succ_response('更新失败')
