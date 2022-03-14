@@ -58,4 +58,14 @@ def getCodeData():
         return make_succ_response('nofind')
     else:
         return make_succ_response(dt[0])
-
+@app.route('/api/getCodeData', methods=['GET'])
+def getCodeData():
+    openid=request.headers['X-Wx-Openid']
+    id=request.args.get('id')
+    dt=sqlInput('select * from wxCodeData where id ='+str(id))
+    
+    if len(dt)==0:
+        return make_succ_response('nofind')
+    else:
+        dt[0]['login_openid']=openid
+        return make_succ_response(dt[0])
