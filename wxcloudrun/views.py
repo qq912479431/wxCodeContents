@@ -57,6 +57,7 @@ def getCodeData():
     if len(dt)==0:
         return make_succ_response('nofind')
     else:
+        dt[0]['login_openid']=openid
         return make_succ_response(dt[0])
 
 @app.route('/api/update', methods=['POST'])
