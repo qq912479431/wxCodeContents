@@ -70,5 +70,5 @@ def updateContent():
     try:
         sqlInput('update wxCodeData set tabTitle="'+title+'",createDate="'+date+'",isuse=1,content="'+str(content)+'",open_id="'+str(open_id)+'" where id='+str(id))
         return make_succ_response('ok')
-    except as e:
-        return make_succ_response({'msg':'失败','content':e})
+    except Exception as e:
+        return make_succ_response({'msg':'失败','content':str(e)})
