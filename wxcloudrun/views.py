@@ -1,6 +1,6 @@
 from datetime import datetime
 from flask import Flask,request
-
+import time
 from flask import render_template, request
 from run import app
 from wxcloudrun.dao import delete_counterbyid, query_counterbyid, insert_counter, update_counterbyid
@@ -65,8 +65,9 @@ def updateContent():
     id=request.get_json()['id']
     content=request.get_json()['content']
     open_id=request.headers['X-Wx-Openid']
+    date=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
     try:
-        sqlInput('update wxCodeData set content="'+str(content)+'",open_id="'+str(open_id)+'" where id='+str(id))
+        sqlInput('update wxCodeData set createDate="'+date+'",isuse=1,content="'+str(content)+'",open_id="'+str(open_id)+'" where id='+str(id))
         return make_succ_response('ok')
     except:
         return make_succ_response('更新失败')
