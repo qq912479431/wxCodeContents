@@ -63,6 +63,7 @@ def getCodeData():
 @app.route('/api/update', methods=['POST'])
 def updateContent():
     id=request.get_json()['id']
+    
     content=request.get_json()['content']
     open_id=request.headers['X-Wx-Openid']
     title=request.get_json()['tabTitle']
