@@ -64,7 +64,7 @@ def getCodeData():
 def updateContent():
     id=request.get_json()['id']
     content=request.get_json()['content']
-    open_id=request.get_json()['open_id']
+    open_id=request.headers['X-Wx-Openid']
     try:
         sqlInput('update wxCodeData set content="'+str(content)+'",open_id="'+str(open_id)+'" where id='+str(id))
         return make_succ_response('ok')
