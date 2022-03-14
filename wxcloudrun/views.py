@@ -65,7 +65,7 @@ def updateContent():
     id=request.get_json()['id']
     content=request.get_json()['content']
     open_id=request.headers['X-Wx-Openid']
-    title=request.headers['tabTitle']
+    title=request.get_json()['tabTitle']
     date=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
     try:
         sqlInput('update wxCodeData set tabTitle="'+title+'",createDate="'+date+'",isuse=1,content="'+str(content)+'",open_id="'+str(open_id)+'" where id='+str(id))
