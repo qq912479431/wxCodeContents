@@ -68,7 +68,7 @@ def updateContent():
     title=request.headers['tabTitle']
     date=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
     try:
-        sqlInput('update wxCodeData set tabTitle="'+title'",createDate="'+date+'",isuse=1,content="'+str(content)+'",open_id="'+str(open_id)+'" where id='+str(id))
+        sqlInput('update wxCodeData set tabTitle="'+title+'",createDate="'+date+'",isuse=1,content="'+str(content)+'",open_id="'+str(open_id)+'" where id='+str(id))
         return make_succ_response('ok')
     except:
         return make_succ_response('更新失败')
