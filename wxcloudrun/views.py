@@ -34,7 +34,7 @@ def index():
 
 @app.route('/qrCode/<filename>')
 def qrCode(filename):
-    from flask import send_file
+    from flask import send_file,make_response
     if filename:
         response = make_response(send_file(filename))
         response.headers['Content-Disposition'] = "attachment; filename="+filename
