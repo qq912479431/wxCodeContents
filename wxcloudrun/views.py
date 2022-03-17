@@ -32,7 +32,14 @@ def index():
     """
     return render_template('index.html')
 
-
+@app.route('/qrCode/<filename>')
+def qrCode(filename):
+    from flask import send_file
+    if filename:
+        response = make_response(send_file(filename))
+        response.headers['Content-Disposition'] = "attachment; filename="+filename
+        return response
+  
 @app.route('/api/maxId', methods=['GET'])
 def getMaxId():
     dt=sqlInput('select max(id) as maxId from wxCodeData')
