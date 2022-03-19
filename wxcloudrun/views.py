@@ -70,13 +70,13 @@ def getCodeData():
 @app.route('/api/update', methods=['POST'])
 def updateContent():
     id=request.get_json()['id']
-    
+    style=request.get_json()['style']
     content=request.get_json()['content']
     open_id=request.headers['X-Wx-Openid']
     title=request.get_json()['tabTitle']
     date=time.strftime("%Y-%m-%d %H:%M:%S",time.localtime(time.time()))
     try:
-        sqlInput('update wxCodeData set tabTitle="'+title+'",createDate="'+date+'",isuse=1,content="'+str(content)+'",open_id="'+str(open_id)+'" where id='+str(id))
+        sqlInput('update wxCodeData set style="'+style+'", tabTitle="'+title+'",createDate="'+date+'",isuse=1,content="'+str(content)+'",open_id="'+str(open_id)+'" where id='+str(id))
         return make_succ_response('ok')
     except Exception as e:
         return make_succ_response({'msg':'失败','content':str(e)})
