@@ -80,3 +80,11 @@ def updateContent():
         return make_succ_response('ok')
     except Exception as e:
         return make_succ_response({'msg':'失败','content':str(e)})
+@app.route('/api/delectCode', methods=['POST'])
+def delectCode():
+    id=request.args.get('id')
+    try:
+        sqlInput('update wxCodeData set style="jd", tabTitle="",createDate=NULL,isuse=0,content="",open_id="" where id='+str(id))
+        return make_succ_response('ok')
+    except Exception as e:
+        return make_succ_response({'msg':'失败','content':str(e)})
