@@ -80,7 +80,7 @@ def updateContent():
         return make_succ_response('ok')
     except Exception as e:
         return make_succ_response({'msg':'失败','content':str(e)})
-@app.route('/api/delectCode', methods=['POST'])
+@app.route('/api/delectCode', methods=['GET'])
 def delectCode():
     id=request.args.get('id')
     try:
